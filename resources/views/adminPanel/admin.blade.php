@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<!-- Flag-icon css-->
 		<link href=" https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.css" rel="stylesheet">
-		<title>Login - Mpwtcs</title>
+		<title>{{__('admin.signIn')}} - Mpwtcs</title>
 	</head>
 	<body>
 		<section class="material-half-bg">
@@ -23,7 +23,7 @@
 			{{-- Error Message Code : START --}}
 			@if(session()->has('errors'))
 			<div class="alert alert-danger">
-				<strong>Whoops!</strong> There were some problems with your input.
+				<strong>{{__('general.Whoops')}}</strong> {{__('general.errorMsg')}}
 				<br />
 				<ul>
 					@foreach($errors->all() as $error)
@@ -44,14 +44,14 @@
 				{{-- Login form : START --}}
 				<form class="login-form" action="{!! route('userLogin') !!}" method="POST">
 					{{csrf_field()}}
-					<h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
+					<h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>{{__('admin.signIn')}}</h3>
 					<div class="form-group">
-						<label class="control-label">USERNAME</label>
-						<input class="form-control" name="username" required="required" type="text" placeholder="Username" autofocus>
+						<label class="control-label">{{__('admin.username')}}</label>
+						<input class="form-control" name="username" required="required" type="text" placeholder="{{__('admin.username')}}" autofocus>
 					</div>
 					<div class="form-group">
-						<label class="control-label">PASSWORD</label>
-						<input class="form-control" name="password" required="required" type="password" placeholder="Password">
+						<label class="control-label">{{__('admin.password')}}</label>
+						<input class="form-control" name="password" required="required" type="password" placeholder="{{__('admin.password')}}">
 					</div>
 					<div class="form-group">
 						<div class="utility">
@@ -67,27 +67,27 @@
 									</ul>
 
 							</div>
-							<p class="semibold-text mb-2"><a href="#" data-toggle="flip">Forgot Password ?</a></p>
+							<p class="semibold-text mb-2"><a href="#" data-toggle="flip">{{__('admin.forgotPassword')}}</a></p>
 						</div>
 					</div>
 					<div class="form-group btn-container">
-						<button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
+						<button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>{{__('admin.signIn')}}</button>
 					</div>
 				</form>
 				{{-- Login form : END --}}
 				{{-- forget password : START --}}
 				<form class="forget-form" action="{!! route('resendOTP') !!}" method="GET">
 					{{csrf_field()}}
-					<h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
+					<h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>{{__('admin.forgotPassword')}}</h3>
 					<div class="form-group">
-						<label class="control-label">Email ID</label>
-						<input class="form-control" name="emailID" required="required" minlength=10 type="text" placeholder="Mobile Number">
+						<label class="control-label">{{__('admin.emailID')}}</label>
+						<input class="form-control" name="emailID" required="required" minlength=10 type="text" placeholder="{{__('admin.emailID')}}">
 					</div>
 					<div class="form-group btn-container">
-						<button type="submit" class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
+						<button type="submit" class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>{{__('admin.reset')}}</button>
 					</div>
 					<div class="form-group mt-3">
-						<p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
+						<p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> {{__('admin.backToLogin')}}</a></p>
 					</div>
 				</form>
 				{{-- forget password : END --}}

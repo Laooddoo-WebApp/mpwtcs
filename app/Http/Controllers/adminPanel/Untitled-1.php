@@ -1,5 +1,7 @@
 <?php
 
+use Highlight\Language;
+
 return [
     'signIn' => 'SIGN IN',
     'username' => 'USERNAME',
@@ -8,5 +10,4 @@ return [
     'forgotPassword' => 'Forgot Password ?',
     'emailID' => 'Email ID',
     'backToLogin' => ' Back to Login',
-    'reset' => 'RESET'
 ];
