@@ -8,7 +8,9 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('adminPanel/css/main.css') }} ">
 		<!-- Font-icon css-->
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<title>Login - UKMF Admin</title>
+		<!-- Flag-icon css-->
+		<link href=" https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.css" rel="stylesheet">
+		<title>Login - Mpwtcs</title>
 	</head>
 	<body>
 		<section class="material-half-bg">
@@ -18,7 +20,7 @@
 			<div class="logo">
 				<h1>Mpwtcs</h1>
 			</div>
-			{{-- Error Message Code --}}
+			{{-- Error Message Code : START --}}
 			@if(session()->has('errors'))
 			<div class="alert alert-danger">
 				<strong>Whoops!</strong> There were some problems with your input.
@@ -30,13 +32,16 @@
 				</ul>
 			</div>
 			@endif
-			{{-- Success Message Code --}}
+			{{-- Error Message Code : END --}}
+			{{-- Success Message Code : START --}}
 			@if(session()->has('message'))
 			<div class="alert alert-success">
 				{{ session()->get('message') }}
 			</div>
 			@endif
+			{{-- Success Message Code : END --}}
 			<div class="login-box">
+				{{-- Login form : START --}}
 				<form class="login-form" action="{!! route('userLogin') !!}" method="POST">
 					{{csrf_field()}}
 					<h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
@@ -49,13 +54,19 @@
 						<input class="form-control" name="password" required="required" type="password" placeholder="Password">
 					</div>
 					<div class="form-group">
-						<input class="form-control" name="source" type="hidden" value="Admin">
-					</div>
-					<div class="form-group">
-						<input class="form-control" name="language" type="hidden" value="English">
-					</div>
-					<div class="form-group">
 						<div class="utility">
+							<div class="animated-checkbox">
+								 <ul class="app-nav">
+         
+										<li class="dropdown"><a class="app-nav__item" data-toggle="dropdown" aria-label="Open Profile Menu" style="color: #009688;" ><i class="fa fa-language fa-lg icon-cog"></i> {{__('admin.language')}}</a>
+											<ul class="dropdown-menu settings-menu dropdown-menu-right">
+												<li><a class="dropdown-item" href="{{ route('set.language', 'en') }}"><i class="flag-icon flag-icon-us"></i> English</a></li>
+												<li><a class="dropdown-item" href="{{ route('set.language', 'la') }}"><i class="flag-icon flag-icon-la"></i> ລາວ</a></li>
+											</ul>
+										</li>
+									</ul>
+
+							</div>
 							<p class="semibold-text mb-2"><a href="#" data-toggle="flip">Forgot Password ?</a></p>
 						</div>
 					</div>
@@ -63,24 +74,14 @@
 						<button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
 					</div>
 				</form>
+				{{-- Login form : END --}}
+				{{-- forget password : START --}}
 				<form class="forget-form" action="{!! route('resendOTP') !!}" method="GET">
 					{{csrf_field()}}
 					<h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
 					<div class="form-group">
-						<label class="control-label">Mobile Number</label>
-						<input class="form-control phoneNumber" name="phoneNumber" required="required" minlength=10 type="text" placeholder="Mobile Number">
-					</div>
-					<div class="form-group">
-						<input class="form-control" name="source" type="hidden" value="Admin">
-					</div>
-					<div class="form-group">
-						<input class="form-control" name="language" type="hidden" value="English">
-					</div>
-					<div class="form-group">
-						<input class="form-control" name="templateName" type="hidden" value="userResetPassword">
-					</div>
-					<div class="form-group">
-						<input class="form-control" name="calledFrom" type="hidden" value="adminLogin">
+						<label class="control-label">Email ID</label>
+						<input class="form-control" name="emailID" required="required" minlength=10 type="text" placeholder="Mobile Number">
 					</div>
 					<div class="form-group btn-container">
 						<button type="submit" class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
@@ -89,6 +90,7 @@
 						<p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
 					</div>
 				</form>
+				{{-- forget password : END --}}
 			</div>
 		</section>
 		<!-- Essential javascripts for application to work-->

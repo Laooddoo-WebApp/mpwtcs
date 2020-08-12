@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\adminPanel;
 
-use App\Http\Controllers\Controller;
+use App\models\Admin;
+use App\models\OTPCheck;
+use App\models\AdminPolicy;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
@@ -13,7 +16,21 @@ class LoginController extends Controller
      */
     public function adminLogin(Request $request)
     {
-        # code...
+        try {
+            $request->input("password");
+            $request->input("password");
+            
+        } catch (ValidationError $e) {
+            $error = ValidationException::withMessages([$e->getMessage()]);
+            throw $error;
+        } catch (Exception $e) {
+            if (IsAuthEnv()) { // If the current environment is needed Authentication. Then return custom message
+                $error = ValidationException::withMessages(['Invalid Exception.']);
+            } else { // If the current environment is not needed Authentication. Then return Exception message
+                $error = ValidationException::withMessages([$e->getMessage()]);
+            }
+            throw $error;
+        }
     }
 
     /**
