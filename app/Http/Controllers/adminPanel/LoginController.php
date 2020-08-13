@@ -35,7 +35,7 @@ class LoginController extends Controller
 
                     //creating session
                     $request->session()->put([str_replace(".", "_", $request->ip()) . config('app.name') => [
-                        'adminPID' => $adminData[0]->PID,
+                        'adminID' => $adminData[0]->PID,
                     ]]); // creating login session
 
                     return redirect()->route('vDashboard');

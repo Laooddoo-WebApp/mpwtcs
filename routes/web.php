@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,23 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/set-language/{lang}', 'LocalizationController@set')->name('set.language');
 
 Route::get('/admin', function () {
-    return view('adminPanel/admin');
-})->name('vAdmin');
-
-Route::get('/dashboard', function () {
-    return view('adminPanel/dashboard');
-})->name('vDashboard');
-
-
-// Admin Logic View routes : START
-Route::post('/adminLogin', 'adminPanel\LoginController@adminLogin')->name('adminLogin');
-
-Route::get('/adminLogout', 'adminPanel\LoginController@adminLogout')->name('adminLogout');
-
-Route::get('/resendOTP', 'adminPanel\LoginController@resendOTP')->name('resendOTP');
-
-Route::post('/resetPassword', 'adminPanel\LoginController@resetPassword')->name('resetPassword');
-// Admin Logic View routes : END
+    return redirect()->route('vAdminLogin');
+});
 
 
 Route::get('/clearSession', function () {

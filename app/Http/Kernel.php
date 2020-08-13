@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\SessionCheck;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -44,6 +45,28 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'admin_base' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Localization::class,
+        ],
+
+        'adminLogin' => [
+            'admin_base',
+            'sessionCheck',
+        ],
+
+        'dashboard' => [
+            'admin_base',
+            'dashboardLogin',
+        ],
+
     ];
 
     /**
@@ -64,5 +87,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'sessionCheck' => \App\Http\Middleware\SessionCheck::class,
+        'dashboardLogin' => \App\Http\Middleware\DashboardAuth::class,
     ];
 }
