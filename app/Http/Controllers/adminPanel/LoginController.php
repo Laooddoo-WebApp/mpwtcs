@@ -89,7 +89,7 @@ class LoginController extends Controller
 
         try {
             $rules = array(
-                'emailID' => 'exists:admin,emailID|regex:/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/',
+                'emailID' => 'regex:/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/|exists:admin,emailID',
             );
 
             $messages = array(
@@ -100,7 +100,7 @@ class LoginController extends Controller
             $validator = Validator::make($request->toArray(), $rules, $messages);
 
             if ($validator->fails()) {
-                throw new ValidationError(trans('admin.loginError'));
+                throw new ValidationError($validator->errors()->first());
             }
 
             $OTP = rand(1000, 9999);
@@ -115,7 +115,17 @@ class LoginController extends Controller
                 $OTPCheckModelRef = new OTPCheck();
 
                 if (count($adminData)) {
-                    $OTPCheckModelRef->updateOrCreate(['adminPID' => $adminData[0]->PID]);
+                    $currentDateTime = microtimeToDateTime(getCurrentTimeStamp());
+                    $validTill = date('Y-m-d H:i:s', strtotime('+' . $adminData[0]->otpValidTimeInSeconds . ' seconds', strtotime($currentDateTime)));
+
+                    $OTPCheckModelRef->updateOrCreate(
+                        ['adminPID' => $adminData[0]->PID],
+                        ['otp' => $OTP, 'validTill' => $validTill]
+                    );
+
+                    $adminPID = $adminData[0]->PID;
+
+                    return view('adminPanel/forgetPassword', compact('adminPID'));
                 } else {
                     throw new ValidationError(trans('admin.userNotFoundWithEmail'));
                 }

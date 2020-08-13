@@ -12,7 +12,6 @@ Route::get('/login', ['middleware' => 'sessionCheck', function () {
     return view('adminPanel/admin');
 }])->name('vAdminLogin');
 
-
 // Admin Logic View routes : START
 Route::post('/adminLogin', 'adminPanel\LoginController@adminLogin')->name('adminLogin');
 

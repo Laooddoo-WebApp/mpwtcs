@@ -75,13 +75,14 @@
 					</div>
 				</form>
 				{{-- Login form : END --}}
+
 				{{-- forget password : START --}}
-				<form class="forget-form" action="{!! route('resendOTP') !!}" method="GET">
+				<form class="forget-form" action="{!! route('forgetPassword') !!}" method="GET">
 					{{csrf_field()}}
 					<h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>{{__('admin.forgotPassword')}}</h3>
 					<div class="form-group">
 						<label class="control-label">{{__('admin.emailID')}}</label>
-						<input class="form-control" name="emailID" required="required" minlength=10 type="text" placeholder="{{__('admin.emailID')}}">
+						<input class="form-control" name="emailID" required="required" type="text" placeholder="{{__('admin.emailID')}}">
 					</div>
 					<div class="form-group btn-container">
 						<button type="submit" class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>{{__('admin.reset')}}</button>

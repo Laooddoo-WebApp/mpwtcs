@@ -25,9 +25,7 @@ class Admin extends Migration
             $table->tinyInteger('invalidAttemptsCount')->default(0);
             $table->string('profileImage')->nullable();
             $table->dateTime('lastPasswordResetTime')->default(DB::raw('CURRENT_TIMESTAMP()'));
-            $table->dateTime('createdAt')->default(DB::raw('CURRENT_TIMESTAMP()'));
-            $table->dateTime('updatedAt')->default(DB::raw('CURRENT_TIMESTAMP()'));
-            $table->softDeletes('deletedAt');
+            $table->timestamps();
             $table->foreign('adminPolicyID')->references('PID')->on('adminPolicy');
         });
     }
