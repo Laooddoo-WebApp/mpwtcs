@@ -64,7 +64,8 @@ class LoginController extends Controller
      */
     public function adminLogout(Request $request)
     {
-        # code...
+        $request->session()->forget(str_replace(".", "_", $request->ip()) . config('app.name')); // removing user session
+        return redirect()->route('vAdminLogin');
     }
 
     /**

@@ -55,6 +55,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Localization::class,
+            'revalidate',
         ],
 
         'adminLogin' => [
@@ -89,5 +90,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'sessionCheck' => \App\Http\Middleware\SessionCheck::class,
         'dashboardLogin' => \App\Http\Middleware\DashboardAuth::class,
+        'revalidate' => \App\Http\Middleware\RevalidateBackHistory::class,
     ];
 }
