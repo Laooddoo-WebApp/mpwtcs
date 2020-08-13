@@ -42,7 +42,7 @@
 			{{-- Success Message Code : END --}}
 			<div class="login-box">
 				{{-- Login form : START --}}
-				<form class="login-form" action="{!! route('userLogin') !!}" method="POST">
+				<form class="login-form" action="{!! route('adminLogin') !!}" method="POST">
 					{{csrf_field()}}
 					<h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>{{__('admin.signIn')}}</h3>
 					<div class="form-group">

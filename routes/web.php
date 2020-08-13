@@ -25,9 +25,9 @@ Route::get('/dashboard', function () {
 
 
 // Admin Logic View routes : START
-Route::post('/userLogin', 'adminPanel\LoginController@adminLogin')->name('userLogin');
+Route::post('/adminLogin', 'adminPanel\LoginController@adminLogin')->name('adminLogin');
 
-Route::get('/userLogout', 'adminPanel\LoginController@adminLogout')->name('userLogout');
+Route::get('/adminLogout', 'adminPanel\LoginController@adminLogout')->name('adminLogout');
 
 Route::get('/resendOTP', 'adminPanel\LoginController@resendOTP')->name('resendOTP');
 
@@ -51,4 +51,3 @@ Route::get('/getCookies/{tagValue}', function ($tagValue) {
 Route::get('/test', function () {
     return Lang::get('admin.language');;
 });
-

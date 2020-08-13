@@ -27,12 +27,18 @@ class LoginController extends Controller
 
             $adminModelRef = new Admin();
 
-            $adminData =  $adminModelRef->getAdminDetailsByUsernameOrEmail($username)->select('password')->limit(1)->get();
+            $adminData =  $adminModelRef->getAdminDetailsByUsernameOrEmail($username)->select('PID', 'password')->limit(1)->get();
 
             if (count($adminData)) {
                 //Check Password is Correct
                 if (strEqual($password, Crypt::decrypt($adminData[0]->password))) {
-                    return 'Done';
+
+                    //creating session
+                    $request->session()->put([str_replace(".", "_", $request->ip()) . config('app.name') => [
+                        'adminPID' => $adminData[0]->PID,
+                    ]]); // creating login session
+
+                    return redirect()->route('vDashboard');
                 } else {
                     throw new ValidationError(trans('admin.loginError'));
                 }
