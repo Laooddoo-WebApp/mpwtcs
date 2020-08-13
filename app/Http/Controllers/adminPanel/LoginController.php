@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\adminPanel;
 
-use DB;
 use App\models\Admin;
 use App\models\OTPCheck;
 use App\models\AdminPolicy;
@@ -11,6 +10,8 @@ use App\Exceptions\ValidationError;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Validation\ValidationException;
+
+require_once app_path() . '/Helpers/basic.php';
 
 class LoginController extends Controller
 {
@@ -23,15 +24,19 @@ class LoginController extends Controller
         try {
             $username = $request->input("username");
             $password = $request->input("password");
-            
 
-            $isLoginDetailCorrect =  Admin::where('username',$username)->where('password', Crypt::encrypt($password) )->count(DB::raw('1'));
-            // Crypt::decrypt($password)
-            if($isLoginDetailCorrect){
-                return 'Done';
-                // Create Session
-            }
-            else{
+            $adminModelRef = new Admin();
+
+            $adminData =  $adminModelRef->getAdminDetailsByUsernameOrEmail($username)->select('password')->limit(1)->get();
+
+            if (count($adminData)) {
+                //Check Password is Correct
+                if (strEqual($password, Crypt::decrypt($adminData[0]->password))) {
+                    return 'Done';
+                } else {
+                    throw new ValidationError(trans('admin.loginError'));
+                }
+            } else {
                 throw new ValidationError(trans('admin.loginError'));
             }
         } catch (ValidationError $e) {

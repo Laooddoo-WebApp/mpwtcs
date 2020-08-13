@@ -25,6 +25,25 @@ function isEmpty($Data, $checkStringIsBlank = true, $ignoreNullString = true)
 
     return false; // Return false if all above cases not full filled. That means variable not empty 
 }
+
+/**
+ * This function check if given strings is equal 
+ * @return bool
+ */
+function strEqual($str1, $str2)
+{
+    if (isEmpty($str1) && isEmpty($str2)) {
+        return true;    // Returning true if both string is NULL
+    }
+    if (isEmpty($str1) || isEmpty($str2)) {
+        return false;   // Returning false if anyone string is NULL
+    }
+    if (trim($str1) == trim($str2)) {
+        return true;    // Returning true if both string is same  
+    }
+    return false;       // Return false if all above cases not full filled. That means string is not equal 
+}
+
 /************************* Basic Function: END *************************/
 
 
