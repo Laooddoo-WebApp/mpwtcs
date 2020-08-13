@@ -25,7 +25,6 @@ class Admin extends Migration
             $table->tinyInteger('invalidAttemptsCount')->default(0);
             $table->string('profileImage')->nullable();
             $table->dateTime('lastPasswordResetTime')->default(DB::raw('CURRENT_TIMESTAMP()'));
-            $table->enum('isActive', ['active', 'inactive'])->default('active');
             $table->dateTime('createdAt')->default(DB::raw('CURRENT_TIMESTAMP()'));
             $table->dateTime('updatedAt')->default(DB::raw('CURRENT_TIMESTAMP()'));
             $table->softDeletes('deletedAt');

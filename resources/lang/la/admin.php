@@ -8,5 +8,6 @@ return [
     'forgotPassword' => 'ລືມລະຫັດຜ່ານ?',
     'emailID' => 'ID ອີເມວ',
     'backToLogin' => 'ກັບໄປທີ່ເຂົ້າສູ່ລະບົບ',
-    'reset' => 'ຕັ້ງຄ່າ ໃໝ່'
+    'reset' => 'ຕັ້ງຄ່າ ໃໝ່',
+    'loginError'=> 'Invalid login Credential! lao',
 ];

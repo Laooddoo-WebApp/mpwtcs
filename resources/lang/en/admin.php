@@ -8,5 +8,6 @@ return [
     'forgotPassword' => 'Forgot Password ?',
     'emailID' => 'Email ID',
     'backToLogin' => ' Back to Login',
-    'reset' => 'RESET'
+    'reset' => 'RESET',
+    'loginError'=> 'Invalid login Credential!',
 ];

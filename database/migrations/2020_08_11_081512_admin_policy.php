@@ -20,7 +20,6 @@ class AdminPolicy extends Migration
             $table->integer('invalidAttemptsAllowed')->nullable();
             $table->integer('otpValidTimeInSeconds')->nullable();
             $table->integer('passwordResetTime')->nullable();
-            $table->enum('isActive', ['active', 'inactive'])->default('active');
             $table->dateTime('createdAt')->default(DB::raw('CURRENT_TIMESTAMP()'));
             $table->dateTime('updatedAt')->default(DB::raw('CURRENT_TIMESTAMP()'));
             $table->softDeletes('deletedAt');

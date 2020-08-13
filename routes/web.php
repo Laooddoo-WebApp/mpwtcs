@@ -35,7 +35,6 @@ Route::post('/resetPassword', 'adminPanel\LoginController@resetPassword')->name(
 // Admin Logic View routes : END
 
 
-
 Route::get('/clearSession', function () {
     request()->session()->flush();
     return 'done';
