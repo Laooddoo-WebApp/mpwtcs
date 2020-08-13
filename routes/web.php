@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Lang;
+
+use App\Providers\MailProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,5 +37,6 @@ Route::get('/getCookies/{tagValue}', function ($tagValue) {
 });
 
 Route::get('/test', function () {
-    return Lang::get('admin.language');;
+    $MailProviderRef = new MailProvider(null);
+    return $MailProviderRef->sendEMail('forgetPassword', 'raj', 'ShubhamJobanputra@gmail.com', ['OTP' => 1245]);
 });
