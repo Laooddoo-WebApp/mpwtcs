@@ -18,4 +18,15 @@ class Admin extends Model
     {
         return $this->where('username', $username)->orWhere('emailID', $username);
     }
+
+    /**
+     * Get Admin/AdminPolicy details by emailID
+     *
+     * @var queryBuilder
+     */
+    public function getAdminAndPolicyDetailsByEmail($emailID)
+    {
+        return $this->join('adminPolicy', 'adminPolicy.PID', '=', 'admin.adminPolicyID')
+            ->where('admin.emailID', $emailID);
+    }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\adminPanel;
 use Exception;
 use App\models\Admin;
 use App\models\OTPCheck;
-use App\models\AdminPolicy;
 use Illuminate\Http\Request;
 use App\Providers\MailProvider;
 use App\Exceptions\ValidationError;
@@ -107,17 +106,22 @@ class LoginController extends Controller
             $OTP = rand(1000, 9999);
 
             $MailProviderRef = new MailProvider(null);
-            
+
             $isMailSend = $MailProviderRef->sendEMail('forgetPassword', '', $request->input('emailID'), ['OTP' => $OTP]);
 
-            if($isMailSend){
-                $adminModelRef = new Admin();
-                $adminPolicyModelRef = new AdminPolicy();
+            if ($isMailSend) {
+                $adminModelRef  = new Admin();
+                $adminData = $adminModelRef->getAdminAndPolicyDetailsByEmail($request->input('emailID'))->select('admin.PID', 'adminPolicy.otpValidTimeInSeconds')->get();
                 $OTPCheckModelRef = new OTPCheck();
-            }else{
+
+                if (count($adminData)) {
+                    $OTPCheckModelRef->updateOrCreate(['adminPID' => $adminData[0]->PID]);
+                } else {
+                    throw new ValidationError(trans('admin.userNotFoundWithEmail'));
+                }
+            } else {
                 throw new ValidationError(trans('general.serverError'));
             }
-            
         } catch (ValidationError $e) {
             $error = ValidationException::withMessages([$e->getMessage()]);
             throw $error;

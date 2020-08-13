@@ -16,7 +16,6 @@ class OtpCheck extends Migration
         Schema::create('otpCheck', function (Blueprint $table) {
             $table->bigIncrements('PID');
             $table->bigInteger('adminPID')->unsigned()->nullable();
-            $table->string('emailID');
             $table->string('otp');
             $table->dateTime('createdAt');
             $table->dateTime('validTill');
