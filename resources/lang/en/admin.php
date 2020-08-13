@@ -10,4 +10,5 @@ return [
     'backToLogin' => ' Back to Login',
     'reset' => 'RESET',
     'loginError'=> 'Invalid login Credential!',
+    'userNotFoundWithEmail' => 'no user Found with this email ID!',
 ];

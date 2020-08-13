@@ -10,4 +10,5 @@ return [
     'backToLogin' => 'ກັບໄປທີ່ເຂົ້າສູ່ລະບົບ',
     'reset' => 'ຕັ້ງຄ່າ ໃໝ່',
     'loginError'=> 'Invalid login Credential! lao',
+    'userNotFoundWithEmail' => 'no user Found with this email ID! lao',
 ];

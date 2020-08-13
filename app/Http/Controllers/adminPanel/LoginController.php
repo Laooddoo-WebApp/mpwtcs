@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\adminPanel;
 
+use Exception;
 use App\models\Admin;
 use App\models\OTPCheck;
 use App\models\AdminPolicy;
 use Illuminate\Http\Request;
+use App\Providers\MailProvider;
 use App\Exceptions\ValidationError;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
 require_once app_path() . '/Helpers/basic.php';
@@ -69,12 +73,62 @@ class LoginController extends Controller
     }
 
     /**
-     * This function resend OTP and reload pageF 
+     * This function resend OTP and reload page
      * @return view
      */
     public function resendOTP(Request $request)
     {
         # code...
+    }
+
+    /**
+     * This function send OTP and redirect to forget password Page
+     * @return view
+     */
+    public function forgetPassword(Request $request)
+    {
+
+        try {
+            $rules = array(
+                'emailID' => 'exists:admin,emailID|regex:/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/',
+            );
+
+            $messages = array(
+                'emailID.exists' => Lang::get('admin.userNotFoundWithEmail'),
+                'emailID.regex' => Lang::get('general.InvalidEmail'),
+            );
+
+            $validator = Validator::make($request->toArray(), $rules, $messages);
+
+            if ($validator->fails()) {
+                throw new ValidationError(trans('admin.loginError'));
+            }
+
+            $OTP = rand(1000, 9999);
+
+            $MailProviderRef = new MailProvider(null);
+            
+            $isMailSend = $MailProviderRef->sendEMail('forgetPassword', '', $request->input('emailID'), ['OTP' => $OTP]);
+
+            if($isMailSend){
+                $adminModelRef = new Admin();
+                $adminPolicyModelRef = new AdminPolicy();
+                $OTPCheckModelRef = new OTPCheck();
+            }else{
+                throw new ValidationError(trans('general.serverError'));
+            }
+            
+        } catch (ValidationError $e) {
+            $error = ValidationException::withMessages([$e->getMessage()]);
+            throw $error;
+        } catch (Exception $e) {
+            if (IsAuthEnv()) { // If the current environment is needed Authentication. Then return custom message
+                $error = ValidationException::withMessages(['Invalid Exception.']);
+            } else { // If the current environment is not needed Authentication. Then return Exception message
+                $error = ValidationException::withMessages([$e->getMessage()]);
+            }
+            throw $error;
+        }
     }
 
     /**

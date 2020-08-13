@@ -16,6 +16,8 @@ Route::get('/login', ['middleware' => 'sessionCheck', function () {
 // Admin Logic View routes : START
 Route::post('/adminLogin', 'adminPanel\LoginController@adminLogin')->name('adminLogin');
 
+Route::get('/forgetPassword', 'adminPanel\LoginController@forgetPassword')->name('forgetPassword');
+
 Route::get('/resendOTP', 'adminPanel\LoginController@resendOTP')->name('resendOTP');
 
 Route::post('/resetPassword', 'adminPanel\LoginController@resetPassword')->name('resetPassword');
