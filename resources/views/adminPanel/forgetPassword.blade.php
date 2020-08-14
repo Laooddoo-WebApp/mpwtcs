@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href=" {{ asset('adminPanel/css/main.css') }}">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Reset Password {{$phoneNumber}} </title>
+    <title>{{__('forgetPassword.resetPassword')}} </title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
         </div>
         @if(count($errors))
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.
+            <strong>{{__('general.Whoops')}}</strong> {{__('general.errorMsg')}}
             <br />
             <ul>
                 @foreach($errors->all() as $error)
@@ -33,38 +33,33 @@
             </ul>
         </div>
         @endif
-        <div class="resetpass-box">
+        <div style="min-height: 450px" class="resetpass-box login-box">
             <form class="login-form" action="{!! route('resetPassword') !!}" method="POST">
                 {{csrf_field()}}
-                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Reset Password ?</h3>
+                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>{{__('forgetPassword.resetPassword')}}</h3>
                 <div class="form-group">
-                    <input class="form-control" name="phoneNumber" type="hidden" value="{{$phoneNumber}}">
+                    <input class="form-control" name="adminPID" type="hidden" value={{$adminPID}}>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">OTP</label>
-                    <input class="form-control otp" name="otp" required="required" type="text" minlength=6 maxlength=10 placeholder="OTP" autofocus>
+                    <label class="control-label">{{__('forgetPassword.otp')}}</label>
+                    <input class="form-control otp" name="otp" required="required" type="text" minlength=4 maxlength=4 placeholder="{{__('forgetPassword.otp')}}" autofocus>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">New password</label>
-                    <input class="form-control" name="newPassword" required="required" type="password" minlength=8 maxlength=16 placeholder="********" autofocus>
+                    <label class="control-label">{{__('forgetPassword.newPassword')}}</label>
+                    <input class="form-control" name="newPassword" required="required" type="password" minlength=8 maxlength=16 placeholder="{{__('forgetPassword.newPassword')}}" autofocus>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Confirm password</label>
-                    <input class="form-control" name="confirmPassword" required="required" type="password" minlength=8 maxlength=16 placeholder="********">
+                    <label class="control-label">{{__('forgetPassword.confirmPassword')}}</label>
+                    <input class="form-control" name="confirmPassword" required="required" type="password" minlength=8 maxlength=16 placeholder="{{__('forgetPassword.confirmPassword')}}">
                 </div>
-                <div class="form-group">
-                    <input class="form-control" name="source" type="hidden" value="Admin">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" name="language" type="hidden" value="English">
-                </div>
+                
                 <div class="form-group">
                     <div class="utility">
-                        <p class="semibold-text mb-2"><a href="{!! route('resendOTP', ['phoneNumber'=>$phoneNumber , 'source' => $source , 'templateName'=>$templateName , 'language'=>$language ]) !!}" data-toggle="flip">Resend OTP?</a></p>
+                    <p class="semibold-text mb-2"><a href="{{route('forgetPassword',['emailID' => $emailID])}}" data-toggle="flip">{{__('forgetPassword.resendOTP')}}</a></p>
                     </div>
                 </div>
                 <div class="form-group btn-container">
-                    <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>{{__('forgetPassword.reset')}}</button>
                 </div>
             </form>
         </div>

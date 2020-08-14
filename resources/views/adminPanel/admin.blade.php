@@ -77,7 +77,7 @@
 				{{-- Login form : END --}}
 
 				{{-- forget password : START --}}
-				<form class="forget-form" action="{!! route('forgetPassword') !!}" method="GET">
+				<form class="forget-form" action="{!! route('forgetPassword') !!}" method="POST">
 					{{csrf_field()}}
 					<h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>{{__('admin.forgotPassword')}}</h3>
 					<div class="form-group">
