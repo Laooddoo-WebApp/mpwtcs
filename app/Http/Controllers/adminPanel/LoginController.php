@@ -89,7 +89,7 @@ class LoginController extends Controller
 
         try {
             $rules = array(
-                'emailID' => 'regex:/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/|exists:admin,emailID',
+                'emailID' => 'bail|regex:/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/|exists:admin,emailID',
             );
 
             $messages = array(
@@ -103,15 +103,16 @@ class LoginController extends Controller
                 throw new ValidationError($validator->errors()->first());
             }
 
+            $emailID = $request->input('emailID');
             $OTP = rand(1000, 9999);
 
             $MailProviderRef = new MailProvider(null);
 
-            $isMailSend = $MailProviderRef->sendEMail('forgetPassword', '', $request->input('emailID'), ['OTP' => $OTP]);
+            $isMailSend = $MailProviderRef->sendEMail('forgetPassword', '', $emailID, ['OTP' => $OTP]);
 
             if ($isMailSend) {
                 $adminModelRef  = new Admin();
-                $adminData = $adminModelRef->getAdminAndPolicyDetailsByEmail($request->input('emailID'))->select('admin.PID', 'adminPolicy.otpValidTimeInSeconds')->get();
+                $adminData = $adminModelRef->getAdminAndPolicyDetailsByEmail($emailID)->select('admin.PID', 'adminPolicy.otpValidTimeInSeconds')->get();
                 $OTPCheckModelRef = new OTPCheck();
 
                 if (count($adminData)) {
@@ -125,7 +126,7 @@ class LoginController extends Controller
 
                     $adminPID = $adminData[0]->PID;
 
-                    return view('adminPanel/forgetPassword', compact('adminPID'));
+                    return redirect()->route('vForgetPassword', ['emailID' => $emailID, 'adminPID' => $adminPID]);
                 } else {
                     throw new ValidationError(trans('admin.userNotFoundWithEmail'));
                 }
@@ -151,6 +152,54 @@ class LoginController extends Controller
      */
     public function resetPassword(Request $request)
     {
-        # code...
+        try {
+            $rules = array(
+                'adminPID' => 'bail|required',
+                'otp' => 'bail|required|integer',
+                'newPassword' => 'bail|required',
+                'confirmPassword' => 'bail|required|same:newPassword',
+            );
+
+            $messages = array(
+                'adminPID.required' => Lang::get('general.adminIdCannotEmpty'),
+                'otp.required' => Lang::get('general.otpCannotEmpty'),
+                'otp.integer' => Lang::get('general.otpShouldBeInt'),
+                'newPassword.required' => Lang::get('general.newPasswordCannotEmpty'),
+                'confirmPassword.required' => Lang::get('general.confirmPasswordCannotEmpty'),
+                'confirmPassword.same' => Lang::get('general.PasswordNotMatch'),
+            );
+
+            $validator = Validator::make($request->toArray(), $rules, $messages);
+
+            if ($validator->fails()) {
+                throw new ValidationError($validator->errors()->first());
+            }
+
+            $OTPCheckModelRef = new OTPCheck();
+
+            $otpData = $OTPCheckModelRef->checkOtpValid($request->input('adminPID'), $request->input('otp'))->get();
+
+            if (count($otpData)) {
+                $otpData[0]->delete();
+
+                $adminModelRef = new Admin();
+                $adminModelRef->where('PID', $request->input('adminPID'))
+                    ->update(['password' => Crypt::encrypt($request->input('newPassword'))]);
+
+                return redirect()->route('vAdminLogin')->with('message', trans('general.passwordUpdate'));
+            } else {
+                throw new ValidationError(trans('general.invalidOTP'));
+            }
+        } catch (ValidationError $e) {
+            $error = ValidationException::withMessages([$e->getMessage()]);
+            throw $error;
+        } catch (Exception $e) {
+            if (IsAuthEnv()) { // If the current environment is needed Authentication. Then return custom message
+                $error = ValidationException::withMessages(['Invalid Exception.']);
+            } else { // If the current environment is not needed Authentication. Then return Exception message
+                $error = ValidationException::withMessages([$e->getMessage()]);
+            }
+            throw $error;
+        }
     }
 }
