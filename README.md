@@ -19,6 +19,7 @@ Clone/checkout from [repo](https://github.com/SoftHeroes/mpwtcs)
     >DB_DATABASE={DBName}<br/>
     >DB_DATABASE={DBUser}<br/>
     >DB_PASSWORD={DBUserPassword}<br/>
+    >CONSTANT_SUPER_USER_EMAIL={YourEmailID}<br/>
 
 - Then generate API key by running bellow command in project directory.
     

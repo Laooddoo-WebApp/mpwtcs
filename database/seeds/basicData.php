@@ -3,6 +3,7 @@
 use App\Models\Admin;
 use App\Models\AdminPolicy;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Crypt;
 
 class basicData extends Seeder
 {
@@ -30,7 +31,7 @@ class basicData extends Seeder
             'firstName' => 'Super',
             'middleName' => '',
             'lastName' => 'User',
-            'emailID' => 'shubhamJobanputra@gmail.com',
+            'emailID' => config('constant.super_user_email'),
             'username' => 'SuperUser',
             'password' => Crypt::encrypt('Test123!')
         )];
