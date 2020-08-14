@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'resetPassword' => 'Reset Password lao',
-    'otp' => 'OTP lao',
-    'newPassword' => 'New Password lao',
-    'confirmPassword' => 'Confirm Password lao',
-    'resendOTP' => 'Resend OTP? lao',
-    'reset' => 'Reset Password lao',
+    'resetPassword' => 'ຕັ້ງລະຫັດຜ່ານໃໝ່',
+    'otp' => 'OTP',
+    'newPassword' => 'ລະຫັດຜ່ານໃໝ່',
+    'confirmPassword' => 'ຢືນຢັນລະຫັດຜ່ານ',
+    'resendOTP' => 'ສົ່ງລະຫັດ OTP ອີກຄັ້ງ?',
+    'reset' => 'ຕັ້ງຄ່າໃໝ່່',
 ];
