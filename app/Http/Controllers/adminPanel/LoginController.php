@@ -71,14 +71,6 @@ class LoginController extends Controller
         return redirect()->route('vAdminLogin');
     }
 
-    /**
-     * This function resend OTP and reload page
-     * @return view
-     */
-    public function resendOTP(Request $request)
-    {
-        # code...
-    }
 
     /**
      * This function send OTP and redirect to forget password Page
