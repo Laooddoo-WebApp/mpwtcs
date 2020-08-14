@@ -1,8 +1,9 @@
 <?php
 
 return [
-    'Whoops' => 'ໂອ້ຍ!',
-    'errorMsg' => 'ມີປັນຫາບາງຢ່າງທີ່ທ່ານເຂົ້າມາ.',
-    'InvalidEmail' => 'Invalid Email address lao',
-    'serverError' => 'unable connect to server lao',
+    'Whoops' => 'ໂອະ! ມີບາງຢ່າງຜິດພາດ ກະລຸນາລອງໃໝ່ອີກຄັ້ງ.',
+    'errorMsg' => 'ມີປັນຫາບາງຢ່າງ.',
+    'InvalidEmail' => 'ຊື່ຜູ້ໃຊ້ຫລືລະຫັດຜ່ານທີ່ຢູ່ອີເມວບໍ່ຖືກຕ້ອງ.',
+    'serverError' => 'ບໍ່ສາມາດເຊື່ອມຕໍ່ກັບເຊີບເວີ.',
+    'not found' => 'ບໍ່ພົບໜ້ານີ້.',
 ];

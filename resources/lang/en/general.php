@@ -5,4 +5,6 @@ return [
     'errorMsg' => 'There were some problems with your input.',
     'InvalidEmail' => 'Invalid Email address',
     'serverError' => 'unable connect to server',
+    'not found' => '!oop page not found',
+
 ];
