@@ -31,7 +31,7 @@ class basicData extends Seeder
             'firstName' => 'Super',
             'middleName' => '',
             'lastName' => 'User',
-            'emailID' => config('constant.super_user_email'),
+            'emailID' => strtolower(config('constant.super_user_email')),
             'username' => 'SuperUser',
             'password' => Crypt::encrypt('Test123!')
         )];
