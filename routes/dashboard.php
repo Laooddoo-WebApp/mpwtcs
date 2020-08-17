@@ -9,7 +9,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/pages', ['middleware' => 'dashboardLogin', function () {
-    return view('adminPanel/dashboard');
+    return view('adminPanel/pages');
 }])->name('vPages');
 
 
