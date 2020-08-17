@@ -11,4 +11,5 @@ return [
     'reset' => 'RESET',
     'loginError'=> 'Invalid login Credential!',
     'userNotFoundWithEmail' => 'no user Found with this email ID!',
+    'default_error_response' => 'Something went wrong!'
 ];
