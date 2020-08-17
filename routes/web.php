@@ -41,10 +41,15 @@ Route::get('/testMail', function () {
     return $MailProviderRef->sendEMail('forgetPassword', 'raj', 'ShubhamJobanputra@gmail.com', ['OTP' => 1245]);
 });
 
-Route::any('/admin/pages/{id}/build', 'PageBuilderController@build')->name('pagebuilder.build');
-Route::any('/admin/pages/build', 'PageBuilderController@build');
+Route::get('/test', function () {
+    $prefix = config('pagebuilder.storage.database.prefix');
+    return $prefix;
+});
+
+Route::any('/admin/pages/{id}/build', 'PageBuilderController@build')->name('pagebuilder.build')->middleware('dashboardLogin');
+Route::any('/admin/pages/build', 'PageBuilderController@build')->middleware('dashboardLogin');
 
 Route::any('/{uri}', [
     'uses' => 'WebsiteController@uri',
     'as' => 'page',
-])->where('uri', '^((?!wp-admin|wp-admin|clearSession|AllSession|getCookies|testMail|set-language).)*$');
+])->where('uri', '^((?!wp-admin|set-language|clearSession|AllSession|getCookies|testMail|test).)*$');

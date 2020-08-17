@@ -34,7 +34,7 @@ return [
             'password'  => env('DB_PASSWORD'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix'    => 'pb_',
+            'prefix'    => 'pagebuilder__',
         ],
         'uploads_folder' => storage_path('app/pagebuilder/uploads')
     ],
@@ -94,7 +94,7 @@ return [
         'class' => PHPageBuilder\Modules\GrapesJS\PageBuilder::class,
         'url' => '/admin/pages/build',
         'actions' => [
-            'back' => '/admin/pages'
+            'back' => '/wp-admin/pages'
         ]
     ],
 

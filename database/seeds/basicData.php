@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Admin;
+use App\Models\PB_Settings;
 use App\Models\AdminPolicy;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Crypt;
@@ -37,5 +38,13 @@ class basicData extends Seeder
         )];
 
         Admin::insert($adminData);
+
+        $pb_settings = [array(
+            'setting' => 'languages',
+            'value' => 'en,nl', // en,nl,es,fr,de
+            'is_array' => 1
+        )];
+
+        PB_Settings::insert($pb_settings);
     }
 }
