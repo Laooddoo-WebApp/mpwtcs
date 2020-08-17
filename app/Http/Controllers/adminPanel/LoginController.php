@@ -81,10 +81,8 @@ class LoginController extends Controller
 
         try {
 
-            $request->replace(['emailID' => strtolower($request->input('emailID'))]);
-
             $rules = array(
-                'emailID' => 'bail|regex:/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/|exists:admin,emailID',
+                'emailID' => 'bail|exists:admin,emailID|regex:/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/',
             );
 
             $messages = array(

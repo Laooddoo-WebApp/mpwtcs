@@ -16,7 +16,7 @@ class basicData extends Seeder
     {
         $adminPolicyData = [array(
             'PID' => '1',
-            'name' => strtolower('SuperUser'),
+            'name' => 'SuperUser',
             'userLockTime' => null,
             'invalidAttemptsAllowed' => null,
             'otpValidTimeInSeconds' => 300,
@@ -31,8 +31,8 @@ class basicData extends Seeder
             'firstName' => 'Super',
             'middleName' => '',
             'lastName' => 'User',
-            'emailID' => strtolower(config('constant.super_user_email')),
-            'username' => strtolower('SuperUser'),
+            'emailID' => config('constant.super_user_email'),
+            'username' => 'SuperUser',
             'password' => Crypt::encrypt('Test123!')
         )];
 
