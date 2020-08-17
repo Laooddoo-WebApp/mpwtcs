@@ -41,7 +41,7 @@ class LoginController extends Controller
                         'adminID' => $adminData[0]->PID,
                     ]]); // creating login session
 
-                    return redirect()->route('vDashboard');
+                    return redirect()->route('vPages');
                 } else {
                     throw new ValidationError(trans('admin.loginError'));
                 }
