@@ -28,7 +28,7 @@ class SessionCheck
             // Checking if session has valid data
             if (!isEmpty($sessionData) && array_key_exists('adminID', $sessionData) && !isEmpty($sessionData['adminID'])) {
                 $request->adminData = $sessionData;
-                return redirect()->route('vDashboard');
+                return redirect()->route('vPages');
             } else {
                 return $next($request);
             }

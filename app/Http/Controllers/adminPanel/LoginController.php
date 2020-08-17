@@ -41,7 +41,7 @@ class LoginController extends Controller
                         'adminID' => $adminData[0]->PID,
                     ]]); // creating login session
 
-                    return redirect()->route('vDashboard');
+                    return redirect()->route('vPages');
                 } else {
                     throw new ValidationError(trans('admin.loginError'));
                 }
@@ -80,8 +80,9 @@ class LoginController extends Controller
     {
 
         try {
+
             $rules = array(
-                'emailID' => 'bail|regex:/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/|exists:admin,emailID',
+                'emailID' => 'bail|exists:admin,emailID|regex:/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/',
             );
 
             $messages = array(
