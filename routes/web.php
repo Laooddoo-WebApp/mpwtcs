@@ -18,7 +18,7 @@ use App\Providers\MailProvider;
 
 Route::get('/set-language/{lang}', 'LocalizationController@set')->name('set.language');
 
-Route::get('/admin', function () {
+Route::get('/wp-admin', function () {
     return redirect()->route('vAdminLogin');
 });
 
@@ -36,7 +36,15 @@ Route::get('/getCookies/{tagValue}', function ($tagValue) {
     return request()->cookie($tagValue);
 });
 
-Route::get('/test', function () {
+Route::get('/testMail', function () {
     $MailProviderRef = new MailProvider(null);
     return $MailProviderRef->sendEMail('forgetPassword', 'raj', 'ShubhamJobanputra@gmail.com', ['OTP' => 1245]);
 });
+
+Route::any('/admin/pages/{id}/build', 'PageBuilderController@build')->name('pagebuilder.build');
+Route::any('/admin/pages/build', 'PageBuilderController@build');
+
+Route::any('/{uri}', [
+    'uses' => 'WebsiteController@uri',
+    'as' => 'page',
+])->where('uri', '^((?!wp-admin|wp-admin|clearSession|AllSession|getCookies|testMail|set-language).)*$');

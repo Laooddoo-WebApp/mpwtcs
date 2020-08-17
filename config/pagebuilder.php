@@ -49,7 +49,7 @@ return [
      |
      */
     'auth' => [
-        'use_login' => true,
+        'use_login' => false,
         'class' => PHPageBuilder\Modules\Auth\Auth::class,
         'url' => '/pb-admin/auth',
         'username' => 'admin',
@@ -65,7 +65,7 @@ return [
      |
      */
     'website_manager' => [
-        'use_website_manager' => true,
+        'use_website_manager' => false,
         'class' => PHPageBuilder\Modules\WebsiteManager\WebsiteManager::class,
         'url' => '/pb-admin'
     ],
@@ -92,9 +92,9 @@ return [
      */
     'pagebuilder' => [
         'class' => PHPageBuilder\Modules\GrapesJS\PageBuilder::class,
-        'url' => '/pb-admin/pagebuilder',
+        'url' => '/admin/pages/build',
         'actions' => [
-            'back' => '/pb-admin'
+            'back' => '/admin/pages'
         ]
     ],
 
@@ -143,7 +143,7 @@ return [
      */
     'router' => [
         'class' => PHPageBuilder\Modules\Router\DatabasePageRouter::class,
-        'use_router' => true
+        'use_router' => false
     ],
 
     /*
