@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'pages' => 'Pages lao',
+    'pages' => 'Pages la',
+    'pageDeleted' => 'Page deleted Successfully! la'
 ];

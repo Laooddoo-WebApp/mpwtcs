@@ -33,6 +33,26 @@
 			@include('adminPanel.sidebar.sidebar')
 			@yield('sidebar')
 		</aside>
+		{{-- Error Message Code : START --}}
+		@if(session()->has('errors'))
+		<div class="alert alert-danger">
+			<strong>{{__('general.Whoops')}}</strong> {{__('general.errorMsg')}}
+			<br />
+			<ul>
+				@foreach($errors->all() as $error)
+				<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+		@endif
+		{{-- Error Message Code : END --}}
+		{{-- Success Message Code : START --}}
+		@if(session()->has('message'))
+		<div class="alert alert-success">
+			{{ session()->get('message') }}
+		</div>
+		@endif
+		{{-- Success Message Code : END --}}
 		<main class="app-content">
 			@yield('content')
 		</main>

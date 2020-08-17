@@ -20,29 +20,23 @@
 				<table class="table table-hover table-bordered" id="myTable">
 					<thead>
 						<tr>
-							<th>UniqueID</th>
-							<th>Product ID</th>
-							<th>Start Date</th>
-							<th>End Date</th>
-							<th>Still Active</th>
-							<th>image</th>
+							<th>Name</th>
+							<th>Layout</th>
+							<th>URL</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						@isset($sliders)
-						@foreach($sliders as $currentSlider)
+						@isset($pages)
+						@foreach($pages as $currentPage)
 						<tr class="text-center">
-							<td>{{$currentSlider->uniqueID}}</td>
-							<td>{{$currentSlider->productID}}</td>
-							<td>{{$currentSlider->startDate}}</td>
-							<td>{{$currentSlider->endDate}}</td>
-							<td>{{'cdc'}}</td>
-							<td> <img class="slider-table-img img-fluid" src={{ asset("storage/resources/sliders/".$currentSlider->imageName ) }} alt=""></td>
+							<td>{{$currentPage->title}}</td>
+							<td>{{$currentPage->layout}}</td>
+							<td>{{$currentPage->route}}</td>
 							<td>
-								<a class="btn btn-primary btn-view" href="{!! route('vViewSlider',$currentSlider->productID) !!}">View</a>
-								<a class="btn btn-primary btn-edit" href="{!! route('vEditSlider',$currentSlider->uniqueID) !!}">Edit</a>
-								<a class="btn btn-primary btn-delete" href="{!! route('deleteSlider',$currentSlider->uniqueID) !!}">Delete</a>
+							<a class="btn btn-primary btn-view" target='_blank' href="{{ url($currentPage->route)}}">{{__('general.view')}}</a>
+								<a class="btn btn-primary btn-edit" href="{!! route('pagebuilder.build',$currentPage->id) !!}">{{__('general.edit')}}</a>
+								<a class="btn btn-primary btn-delete" href="{!! route('pageDelete',$currentPage->id) !!}">{{__('general.delete')}}</a>
 							</td>
 						</tr>
 						@endforeach
