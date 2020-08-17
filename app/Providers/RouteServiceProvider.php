@@ -91,7 +91,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdminLoginRoutes()
     {
-        Route::prefix('admin')
+        Route::prefix('wp-admin')
             ->middleware('adminLogin')
             ->namespace($this->namespace)
             ->group(base_path('routes/adminLogin.php'));
@@ -106,7 +106,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapDashboardLoginRoutes()
     {
-        Route::prefix('admin')
+        Route::prefix('wp-admin')
             ->middleware('dashboard')
             ->namespace($this->namespace)
             ->group(base_path('routes/dashboard.php'));
