@@ -19,5 +19,7 @@ return [
     'delete' => 'Delete',
     'new' => 'New',
     'add' => 'Add',
-    'cancel' => 'Cancel'
+    'cancel' => 'Cancel',
+    'search' => 'Search',
+    'enterInput' => 'Enter Input'
 ];

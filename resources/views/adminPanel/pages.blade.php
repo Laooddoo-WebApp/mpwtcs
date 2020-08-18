@@ -18,8 +18,8 @@
 						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPage">{{__('general.new')}} <i class="fa fa-plus"></i>
 					</div>
 					<div class="col-6 table-search">
-						Search :&nbsp;&nbsp;
-						<input type="text" id="mySearch" onkeyup="searchInTable()" placeholder="Search for names.." title="Type in a name">
+						{{__('general.search')}} :&nbsp;&nbsp;
+					<input type="text" id="mySearch" onkeyup="searchInTable()" placeholder="{{__('general.enterInput')}}" title="Type in a name">
 					</div>
 				</div>
 				<table class="table table-hover table-bordered" id="myTable">
@@ -39,7 +39,7 @@
 							<td>{{$currentPage->layout}}</td>
 							<td>{{$currentPage->route}}</td>
 							<td>
-							<a class="btn btn-primary btn-view" target='_blank' href="{{ url($currentPage->route)}}">{{__('general.view')}}</a>
+								<a class="btn btn-primary btn-view" target='_blank' href="{{ url($currentPage->route)}}">{{__('general.view')}}</a>
 								<a class="btn btn-primary btn-edit" href="{!! route('pagebuilder.build',$currentPage->id) !!}">{{__('general.edit')}}</a>
 								<a class="btn btn-primary btn-delete" href="{!! route('pageDelete',$currentPage->id) !!}">{{__('general.delete')}}</a>
 							</td>

@@ -21,6 +21,8 @@ return [
     'delete' => 'Delete la',
     'new' => 'New la',
     'add' => 'Add la',
-    'cancel' => 'Cancel la'
+    'cancel' => 'Cancel la',
+    'search' => 'Search la',
+    'enterInput' => 'Enter Input la'
 
 ];
