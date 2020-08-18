@@ -29,4 +29,5 @@ class Admin extends Model
         return $this->join('adminPolicy', 'adminPolicy.PID', '=', 'admin.adminPolicyID')
             ->where('admin.emailID', $emailID);
     }
+
 }
