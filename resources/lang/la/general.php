@@ -18,6 +18,9 @@ return [
     'passwordUpdate' => 'ອັບເດດລະຫັດຜ່ານຂອງທ່ານສຳເລັດ!',
     'view' => 'View la',
     'edit' => 'Edit la',
-    'delete' => 'Delete la'
+    'delete' => 'Delete la',
+    'new' => 'New la',
+    'add' => 'Add la',
+    'cancel' => 'Cancel la'
 
 ];

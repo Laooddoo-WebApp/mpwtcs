@@ -16,5 +16,8 @@ return [
     'passwordUpdate' => 'Your Password Update Successfully!',
     'view' => 'View',
     'edit' => 'Edit',
-    'delete' => 'Delete'
+    'delete' => 'Delete',
+    'new' => 'New',
+    'add' => 'Add',
+    'cancel' => 'Cancel'
 ];

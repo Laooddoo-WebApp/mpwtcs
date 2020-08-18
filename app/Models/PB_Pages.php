@@ -10,6 +10,10 @@ class PB_Pages extends Model
 {
     protected $table = 'pagebuilder__pages';
 
+    protected $fillable = [
+        'name','layout'
+    ];
+    
     public function getPagesWithTranslations($pageId = null, $lang = null)
     {
         return $this->join(
