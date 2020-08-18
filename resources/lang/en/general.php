@@ -13,5 +13,11 @@ return [
     'invalidOTP' => 'Your OTP is Invalid or Expired',
     'otpCannotEmpty' => "OTP can't be Empty",
     'otpShouldBeInt' => 'OTP Should by integer',
-    'passwordUpdate' => 'Your Password Update Successfully!'
+    'passwordUpdate' => 'Your Password Update Successfully!',
+    'view' => 'View',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'new' => 'New',
+    'add' => 'Add',
+    'cancel' => 'Cancel'
 ];

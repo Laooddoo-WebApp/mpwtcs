@@ -33,6 +33,55 @@
 			@include('adminPanel.sidebar.sidebar')
 			@yield('sidebar')
 		</aside>
+
+        <!--Js for alert, need to load it before content-->
+        <script src="{{ asset('adminPanel/js/jquery-3.2.1.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('adminPanel/js/plugins/bootstrap-notify.min.js')}}"></script>
+
+		{{-- Error Message Code : START--}}
+		@if(session()->has('errors'))
+		<div>
+			@foreach($errors->all() as $error)
+			<script>
+				$.notify({
+					title: "Error : ",
+					message: "{{ $error }}",
+					icon: 'fa fa-check'
+					},{
+						type: "danger"
+					});
+			</script>
+			@endforeach
+		</div>
+		@endif
+		{{-- Error Message Code : END--}}
+
+		{{-- Error Message Code : START --}}
+		@if(session()->has('message'))
+		<div>
+			@php
+				$temp = session()->get('message');
+				if(gettype($temp) == 'array'){
+					$message = $temp[array_key_first($temp)];
+				}
+				else{
+					$message = $temp;
+				}
+			@endphp
+
+			<script>
+				$.notify({
+					title: "Success : ",
+					message: "{{ $message }}",
+					icon: 'fa fa-check'
+					},{
+						type: "success"
+					});
+			</script>
+		</div>
+		@endif
+		{{-- Error Message Code : END --}}
+	
 		<main class="app-content">
 			@yield('content')
 		</main>
