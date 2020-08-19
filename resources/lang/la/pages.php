@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'pages' => 'Pages la',
-    'pageDeleted' => 'Page deleted Successfully! la',
-    'addNewPage' => 'Add New Page la',
-    'pageName' => 'Page Name la',
-    'enTitle' => 'English Title la',
-    'enRoute' => 'English Route la',
-    'laTitle' => 'Lao Title la',
-    'laRoute' => 'Lao Route la',
-    'name' => 'Name la',
-    'layout' => 'Layout la',
-    'url' => 'URL la',
-    'actions' => 'Actions la',
+    'pages' => 'ໜ້າ',
+    'pageDeleted' => 'ລຶບໜ້າສຳເລັດ!',
+    'addNewPage' => 'ເພີ່ມໜ້າ',
+    'pageName' => 'ຊື່ໜ້າ',
+    'enTitle' => 'ຫົວຂໍ້ພາສາອັງກິດ',
+    'enRoute' => 'ເສັ້ນທາງພາສາອັງກິດ',
+    'laTitle' => 'ຫົວຂໍໍ້ພາສາລາວ',
+    'laRoute' => 'ເສັ້ນທາງພາສາລາວ',
+    'name' => 'ຊື່',
+    'layout' => 'ຮູບແບບ',
+    'url' => 'ຢູອາແອວ',
+    'actions' => 'ກະທຳ',
 ];

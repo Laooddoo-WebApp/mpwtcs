@@ -16,13 +16,13 @@ return [
     'otpCannotEmpty' => "ລະຫັດ OTP ບໍ່ສາມາດວ່າງເປົ່າ",
     'otpShouldBeInt' => 'ລະຫັດ OTP ຄວນເປັນຕົວເລກ',
     'passwordUpdate' => 'ອັບເດດລະຫັດຜ່ານຂອງທ່ານສຳເລັດ!',
-    'view' => 'View la',
-    'edit' => 'Edit la',
-    'delete' => 'Delete la',
-    'new' => 'New la',
-    'add' => 'Add la',
-    'cancel' => 'Cancel la',
-    'search' => 'Search la',
-    'enterInput' => 'Enter Input la'
+    'view' => 'ເບິ່ງ',
+    'edit' => 'ແກ້ໄຂ',
+    'delete' => 'ລຶບ',
+    'new' => 'ໃໝ່',
+    'add' => 'ເພີ່ມ',
+    'cancel' => 'ຍົກເລີກ',
+    'search' => 'ຄົ້ນຫາ',
+    'enterInput' => 'ປ້ອນຂໍ້ມູນ'
 
 ];
