@@ -61,7 +61,7 @@
 										<li class="dropdown"><a class="app-nav__item" data-toggle="dropdown" aria-label="Open Profile Menu" style="color: #009688;" ><i class="fa fa-language fa-lg icon-cog"></i> {{__('admin.language')}}</a>
 											<ul class="dropdown-menu settings-menu dropdown-menu-right">
 												<li><a class="dropdown-item" href="{{ route('set.language', 'en') }}"><i class="flag-icon flag-icon-us"></i> English</a></li>
-												<li><a class="dropdown-item" href="{{ route('set.language', 'la') }}"><i class="flag-icon flag-icon-la"></i> ລາວ</a></li>
+												<li><a class="dropdown-item" href="{{ route('set.language', 'nl') }}"><i class="flag-icon flag-icon-la"></i> ລາວ</a></li>
 											</ul>
 										</li>
 									</ul>

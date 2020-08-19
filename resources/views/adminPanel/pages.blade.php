@@ -2,11 +2,11 @@
 @section('content')
 <div class="app-title">
 	<div>
-		<h1><i class="fas fa fa-file-word"></i>&nbsp;&nbsp;&nbsp;Pages</h1>
+		<h1><i class="fas fa fa-file-word"></i>&nbsp;&nbsp;&nbsp;{{__('pages.pages')}}</h1>
 	</div>
 	<ul class="app-breadcrumb breadcrumb side">
 		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-		<li class="breadcrumb-item">Pages</li>
+		<li class="breadcrumb-item">{{__('pages.pages')}}</li>
 	</ul>
 </div>
 <div class="row">

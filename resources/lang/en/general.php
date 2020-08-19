@@ -21,5 +21,7 @@ return [
     'add' => 'Add',
     'cancel' => 'Cancel',
     'search' => 'Search',
-    'enterInput' => 'Enter Input'
+    'enterInput' => 'Enter Input',
+    'logout' => 'Logout',
+    'settings' => 'Settings'
 ];
